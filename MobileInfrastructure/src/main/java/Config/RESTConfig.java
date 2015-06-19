@@ -1,6 +1,7 @@
 package Config;
 
 import com.mycompany.mobileinfrastructure.SchoolService;
+import com.mycompany.mobileinfrastructure.StudentService;
 import com.mycompany.mobileinfrastructure.TestService;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,6 +15,7 @@ public class RESTConfig extends Application {
         Set<Class<?>> s = new HashSet<Class<?>>();
         s.add(TestService.class);
         s.add(SchoolService.class);
+        s.add(StudentService.class);
 
         return s;
     }
