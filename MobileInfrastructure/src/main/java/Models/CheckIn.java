@@ -12,7 +12,7 @@ package Models;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "school")
+@XmlRootElement(name = "checkin")
 public class CheckIn {
     
     private int id;

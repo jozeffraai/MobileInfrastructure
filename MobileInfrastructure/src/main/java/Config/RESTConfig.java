@@ -1,5 +1,6 @@
 package Config;
 
+import com.mycompany.mobileinfrastructure.CheckInService;
 import com.mycompany.mobileinfrastructure.SchoolService;
 import com.mycompany.mobileinfrastructure.StudentService;
 import com.mycompany.mobileinfrastructure.TestService;
@@ -16,6 +17,7 @@ public class RESTConfig extends Application {
         s.add(TestService.class);
         s.add(SchoolService.class);
         s.add(StudentService.class);
+        s.add(CheckInService.class);
 
         return s;
     }

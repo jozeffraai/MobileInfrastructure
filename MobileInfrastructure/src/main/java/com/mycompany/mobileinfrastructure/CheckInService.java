@@ -12,6 +12,7 @@ import Models.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -20,14 +21,13 @@ import javax.ws.rs.Produces;
  *
  * @author bob
  */
-@Path("checkIn")
+@Path("checkin")
 public class CheckInService {
     
 private DbManager dbManager;
     private Querymanager querymanager;
     
     @GET
-    @Produces
     @Path("/all")
     public String CheckIns(){
         List<CheckIn> checkins = new ArrayList<CheckIn>();
@@ -36,7 +36,7 @@ private DbManager dbManager;
         querymanager = new Querymanager(dbManager);
         
         checkins = querymanager.getCheckInList();
-        String res = "Naam\tStraat\tPostcode\n";
+        String res = "";
         for (CheckIn c:checkins) {
                         int id = c.getId();
 			String checkInTime = c.getCheckInTime();
@@ -48,6 +48,18 @@ private DbManager dbManager;
         
         dbManager.closeConnection();
         return res;
+    }
+    
+    @POST
+    @Path("/newcheckin")
+    public void createCheckin() {
+        System.out.println("ik word aangeroepen");
+        dbManager = new DbManager();
+        dbManager.openConnection();
+        querymanager = new Querymanager(dbManager);
+        
+        querymanager.createCheckIn(2);
+        dbManager.closeConnection();
     }
     
     @GET

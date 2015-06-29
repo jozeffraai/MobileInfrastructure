@@ -9,7 +9,24 @@
                 tools:context=".MainActivity">
 
     <TextView
-        android:text="@string/hello_world"
+        android:id="@+id/tvStudentNaam"
+        android:hint="@string/studentNaam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/tvSchoolID"
+        android:hint="@string/schoolID"
+        android:layout_below="@+id/tvStudentNaam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/etStudentID"
+        android:layout_below="@id/tvSchoolID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/btnOphaal"
+        android:layout_below="@+id/etStudentID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
