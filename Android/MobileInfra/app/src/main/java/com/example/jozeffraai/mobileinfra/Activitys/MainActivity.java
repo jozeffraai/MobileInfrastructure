@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.jozeffraai.mobileinfra.GPSTracker;
 import com.example.jozeffraai.mobileinfra.R;
 
 import org.apache.http.HttpResponse;
@@ -26,6 +27,10 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 	TextView tvStudentNaam, tvSchoolID;
 	EditText etStudentID;
 	private static Button btnSubmit;
+	GPSTracker gps;
+
+	double gpsSchoolLat = 52.337051;
+	double gpsSchoolLon = 4.928725;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +45,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 		btnSubmit.setOnClickListener(this);
 	}
 
-	public void execute() {
-		new HttpAsyncTask().execute("http://145.109.148.44:8080/MobileInfrastructure/resources/checkin/newcheckin/2456");
+	public void execute(int id) {
+		new HttpAsyncTask().execute("http://145.109.148.44:8080/MobileInfrastructure/resources/checkin/newcheckin/" + id);
 
 	}
 
@@ -77,11 +82,21 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
 	}
 
+	public void isInRange(){
+		if(gps.getDistance(gpsSchoolLat, gpsSchoolLon) < 1000){
+			execute(Integer.parseInt(etStudentID.getText().toString()));
+			Toast.makeText(getBaseContext(), "Je Bent Ingecheckt", Toast.LENGTH_LONG).show();
+		}
+		else{
+			Toast.makeText(getBaseContext(), "Breng je luie reet es ff heel snel naar school", Toast.LENGTH_LONG).show();
+		}
+	}
+
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 			case R.id.btnSubmit:
-				execute();
+				isInRange();
 				break;
 		}
 	}
