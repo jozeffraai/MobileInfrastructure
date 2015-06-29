@@ -22,13 +22,13 @@
     <EditText
         android:id="@+id/etStudentID"
         android:layout_below="@id/tvSchoolID"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <Button
-        android:id="@+id/btnOphaal"
+        android:id="@+id/btnSubmit"
         android:text="@string/btnOphaal"
         android:layout_below="@+id/etStudentID"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
 </RelativeLayout>

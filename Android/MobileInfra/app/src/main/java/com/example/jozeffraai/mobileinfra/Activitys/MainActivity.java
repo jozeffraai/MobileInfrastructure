@@ -3,9 +3,7 @@ package com.example.jozeffraai.mobileinfra.Activitys;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -24,26 +22,26 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 
-public class MainActivity extends ActionBarActivity{
+public class MainActivity extends ActionBarActivity implements View.OnClickListener {
 	TextView tvStudentNaam, tvSchoolID;
 	EditText etStudentID;
-	Button btnOphaal;
+	private static Button btnSubmit;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-
-
-		tvStudentNaam = (TextView) findViewById(R.id.tvStudentNaam);
-		tvSchoolID = (TextView) findViewById(R.id.tvSchoolID);
-		etStudentID = (EditText) findViewById(R.id.etStudentID);
-		btnOphaal = (Button) findViewById(R.id.btnOphaal);
-
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
+		tvStudentNaam = (TextView)findViewById(R.id.tvStudentNaam);
+		tvSchoolID = (TextView)findViewById(R.id.tvSchoolID);
+		etStudentID = (EditText)findViewById(R.id.etStudentID);
+		btnSubmit = (Button)findViewById(R.id.btnSubmit);
+
+		btnSubmit.setOnClickListener(this);
 	}
 
 	public void execute() {
-		new HttpAsyncTask().execute("http://145.109.181.199:8080/MobileInfrastructures/resources/checkin/newcheckin/1");
+		new HttpAsyncTask().execute("http://145.109.148.44:8080/MobileInfrastructure/resources/checkin/newcheckin/2456");
 
 	}
 
@@ -79,17 +77,26 @@ public class MainActivity extends ActionBarActivity{
 
 	}
 
-	private class HttpAsyncTask extends AsyncTask<String, Void, String> {
-		@Override
-		protected String doInBackground(String... urls) {
-
-			return GET(urls[0]);
-		}
-
-		@Override
-		protected void onPostExecute(String result) {
-			Toast.makeText(getBaseContext(), "Received!", Toast.LENGTH_LONG).show();
-
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+			case R.id.btnSubmit:
+				execute();
+				break;
 		}
 	}
-}
+
+		private class HttpAsyncTask extends AsyncTask<String, Void, String> {
+			@Override
+			protected String doInBackground(String... urls) {
+
+				return GET(urls[0]);
+			}
+
+			@Override
+			protected void onPostExecute(String result) {
+				Toast.makeText(getBaseContext(), "Received!", Toast.LENGTH_LONG).show();
+
+			}
+		}
+	}
