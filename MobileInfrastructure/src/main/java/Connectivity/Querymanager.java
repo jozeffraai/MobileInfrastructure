@@ -110,7 +110,7 @@ public class Querymanager {
                 String blabla = "blabla";
         
                 String sql = "Insert INTO checkin(checkInTime, checkOutTime, studentID)"
-                        + "VALUES('"+ blabla +"','"+ blabla +"','"+ studentID +"');";
+                        + "VALUES('"+ dateFormat.format(date) +"','"+ blabla +"','"+ studentID +"');";
                 
                 dbmanager.insertQuery(sql);
 }

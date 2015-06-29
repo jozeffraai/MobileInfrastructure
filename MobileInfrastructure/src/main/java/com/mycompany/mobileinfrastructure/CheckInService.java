@@ -11,11 +11,13 @@ import Connectivity.Querymanager;
 import Models.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 /**
  *
@@ -50,15 +52,18 @@ private DbManager dbManager;
         return res;
     }
     
-    @POST
-    @Path("/newcheckin")
-    public void createCheckin() {
+    @GET
+    @Path("/newcheckin/{id : \\d+}")
+    @Consumes(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.TEXT_PLAIN)
+    public void createCheckin(@PathParam("id") int id) {
+        
         System.out.println("ik word aangeroepen");
         dbManager = new DbManager();
         dbManager.openConnection();
         querymanager = new Querymanager(dbManager);
         
-        querymanager.createCheckIn(2);
+        querymanager.createCheckIn(id);
         dbManager.closeConnection();
     }
     

@@ -30,12 +30,15 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 		TextView tvStudentNaam, tvSchoolID;
 		EditText etStudentID;
 		Button btnOphaal;
-		Student student;
 
 		tvStudentNaam = (TextView) findViewById(R.id.tvStudentNaam);
 		tvSchoolID = (TextView) findViewById(R.id.tvSchoolID);
 		etStudentID = (EditText) findViewById(R.id.etStudentID);
 		btnOphaal = (Button) findViewById(R.id.btnOphaal);
+
+		tvStudentNaam.setText(R.string.studentNaam);
+		tvSchoolID.setText(R.string.schoolID);
+		etStudentID.setText(R.string.studentID);
 
 
 		btnOphaal.setOnClickListener(this);
@@ -45,7 +48,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 	}
 
 	public void execute(int studentID){
-		new HttpAsyncTask().execute("http://145.109.181.199:8080/MobileInfrastructures/resources/student/" + studentID);
+		new HttpAsyncTask().execute("http://145.109.181.199:8080/MobileInfrastructures/resources/checkin/newcheckin" + studentID);
 
 	}
 

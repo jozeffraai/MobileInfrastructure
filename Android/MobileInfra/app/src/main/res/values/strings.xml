@@ -6,4 +6,5 @@
     /////////////////Main Activity///////////////////
     <string name="studentNaam">Naam Student</string>
     <string name="schoolID">School ID</string>
+    <string name="studentID">Student ID</string>
 </resources>
