@@ -42,6 +42,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 		etStudentID = (EditText)findViewById(R.id.etStudentID);
 		btnSubmit = (Button)findViewById(R.id.btnSubmit);
 
+		gps = new GPSTracker(getApplicationContext());
+
 		btnSubmit.setOnClickListener(this);
 	}
 
@@ -83,8 +85,10 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 	}
 
 	public void isInRange(){
+		System.out.println("GPS: " + gps.getDistance(gpsSchoolLat, gpsSchoolLon));
+
 		if(gps.getDistance(gpsSchoolLat, gpsSchoolLon) < 1000){
-			execute(Integer.parseInt(etStudentID.getText().toString()));
+//			execute(Integer.parseInt(etStudentID.getText().toString()));
 			Toast.makeText(getBaseContext(), "Je Bent Ingecheckt", Toast.LENGTH_LONG).show();
 		}
 		else{
