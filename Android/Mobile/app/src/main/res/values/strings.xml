@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MobileInfra</string>
+    <string name="app_name">Mobile</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -7,5 +7,4 @@
     <string name="studentNaam">Naam Student</string>
     <string name="schoolID">School ID</string>
     <string name="studentID">Student ID</string>
-    <string name="btnOphaal">Haal Op!</string>
 </resources>
