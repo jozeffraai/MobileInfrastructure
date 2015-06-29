@@ -2,6 +2,7 @@ package Connectivity;
 
 import Models.School;
 import Models.Student;
+import Models.CheckIn;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -90,7 +91,7 @@ public class Querymanager {
                 student = new Student(result.getInt("id"),
                         result.getString("naam"),
                         result.getBoolean("toegestaan"),
-                        result.getInt("schoolID"));
+                        result.getInt("ID"));
             }
         } catch (SQLException e) {
             System.out.println(DbManager.SQL_EXCEPTION + e.getMessage());
@@ -98,4 +99,43 @@ public class Querymanager {
 
         return student;
     }
+    
+ /////////////////////////////////////////CheckIn/////////////////////////////////
+    public CheckIn getCheckIn(int id) {
+        CheckIn checkIn = new CheckIn();
+        try {
+            String sq1 = "SELECT * FROM checkin " + "WHERE id='" + id + "'";
+            ResultSet result = dbmanager.doQuery(sq1);
+            if (result.next()) {
+                checkIn = new CheckIn(result.getInt("id"),
+                        result.getString("checkInTime"), 
+                        result.getString("checkOutTime"), 
+                        result.getInt("studentID")
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println(DbManager.SQL_EXCEPTION + e.getMessage());
+        }
+
+        return checkIn;
+    }
+    
+    public List<CheckIn> getCheckInList() {
+        List<CheckIn> checkIns = new ArrayList<CheckIn>();
+        try {
+            String sql = "SELECT * FROM checkin";
+            ResultSet result = dbmanager.doQuery(sql);
+            while (result.next()) {
+                checkIns.add(new CheckIn(result.getInt("id"),
+                     result.getString("checkInTime"), 
+                        result.getString("checkOutTime"), 
+                        result.getInt("studentID")
+                ));
+            }
+        } catch (SQLException e) {
+            System.out.println(DbManager.SQL_EXCEPTION + e.getMessage());
+        }
+        return checkIns;
+     }
+    
 }
